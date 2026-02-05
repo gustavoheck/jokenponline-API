@@ -12,14 +12,17 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
     private long streak;
 
     private long coins;
 
+    @ManyToMany
     private List<Match> matches;
 
     private boolean darkmode;
