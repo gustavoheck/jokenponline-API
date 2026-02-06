@@ -12,6 +12,8 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    private boolean online;
+
     @Column(nullable = false, unique = true)
     private String username;
 

@@ -1,9 +1,14 @@
 package com.jokenponline.repository;
 
+import com.jokenponline.entities.Match;
+import com.jokenponline.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface UsersRepository extends JpaRepository<UsersRepository, Long> {
+public interface UsersRepository extends JpaRepository<Users, Long> {
 
 }

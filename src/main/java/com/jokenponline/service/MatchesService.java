@@ -5,6 +5,8 @@ import com.jokenponline.exceptions.IdNotFoundException;
 import com.jokenponline.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MatchesService {
 
@@ -22,5 +24,10 @@ public class MatchesService {
         return matchRepository.findById(id)
                 .orElseThrow(() -> new IdNotFoundException("Id não encontrado"));
     }
+
+    public Optional<Match> findByUsername (String username) {
+        return matchRepository.findWithUsername(username);
+    }
+
 
 }
