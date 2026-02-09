@@ -9,9 +9,15 @@ import org.springframework.stereotype.Service;
 public class MatchesService {
 
     private final MatchRepository matchRepository;
+    private final UsersService usersService;
 
-    public MatchesService(MatchRepository matchRepository) {
+    public MatchesService(MatchRepository matchRepository, UsersService usersService) {
          this.matchRepository = matchRepository;
+         this.usersService = usersService;
+    }
+
+    public void matchmaking () {
+
     }
 
     public Match createMatch (Match match) {
@@ -37,5 +43,4 @@ public class MatchesService {
         return matchRepository.findWithUserId(id)
                 .orElseThrow(() -> new NotFoundException("Não há usuário com este Id"));
     }
-
 }

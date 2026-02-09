@@ -12,20 +12,14 @@ public class Match {
 
     private boolean online;
 
-    @Column(nullable = false)
-    private long playerOneId;
-
-    @Column(nullable = false)
-    private String playerOneUsername;
+    @ManyToMany
+    private Users playerOne;
 
     @Column(nullable = false)
     private String playerOnePlay;
 
-    @Column(nullable = false)
-    private long playerTwoId;
-
-    @Column(nullable = false)
-    private String playerTwoUsername;
+    @ManyToMany
+    private Users PlayerTwo;
 
     @Column(nullable = false)
     private String playerTwoPlay;
