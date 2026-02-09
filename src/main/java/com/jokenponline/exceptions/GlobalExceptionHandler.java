@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IdNotFoundException.class)
-    public ResponseEntity<IdNotFoundExceptionDTO> handleIdNotFound (IdNotFoundException e) {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<IdNotFoundExceptionDTO> handleIdNotFound (NotFoundException e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(new IdNotFoundExceptionDTO (

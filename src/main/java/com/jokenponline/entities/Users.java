@@ -12,6 +12,10 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    private boolean online;
+
+    private boolean searchingMatch;
+
     @Column(nullable = false, unique = true)
     private String username;
 
