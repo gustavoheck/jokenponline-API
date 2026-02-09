@@ -1,7 +1,7 @@
 package com.jokenponline.exceptions;
 
-public class IdNotFoundException extends RuntimeException {
-    public IdNotFoundException(String message) {
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
         super(message);
     }
 }

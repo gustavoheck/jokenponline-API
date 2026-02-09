@@ -11,9 +11,8 @@ import java.util.Optional;
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
-    Optional<Match> findByOnline (boolean online);
-
-    Optional<Match> findById (long id);
+    Optional<Match> findByOnline (Boolean online);
+    Optional<Match> findById (Long id);
 
     @Query("""
        SELECT m
@@ -29,5 +28,5 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
        WHERE m.playerOneId = :id
        OR m.playerTwoId = :id
        """)
-    Optional<Match> findWithUserId(long id);
+    Optional<Match> findWithUserId(Long id);
 }

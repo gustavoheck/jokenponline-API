@@ -1,18 +1,16 @@
 package com.jokenponline.service;
 
 import com.jokenponline.entities.Match;
-import com.jokenponline.exceptions.IdNotFoundException;
+import com.jokenponline.exceptions.NotFoundException;
 import com.jokenponline.repository.MatchRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class MatchesService {
 
     private final MatchRepository matchRepository;
 
-    MatchesService (MatchRepository matchRepository) {
+    public MatchesService(MatchRepository matchRepository) {
          this.matchRepository = matchRepository;
     }
 
@@ -22,12 +20,22 @@ public class MatchesService {
 
     public Match findById (Long id) {
         return matchRepository.findById(id)
-                .orElseThrow(() -> new IdNotFoundException("Id não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Id não encontrado"));
     }
 
-    public Optional<Match> findByUsername (String username) {
-        return matchRepository.findWithUsername(username);
+    public Match findByUsername (String username) {
+        return matchRepository.findWithUsername(username)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
     }
 
+    public Match findByOnline (boolean online) {
+        return matchRepository.findByOnline(online)
+                .orElseThrow(() -> new NotFoundException("Não a nenhuma partida" + ((online) ? "online." : "offline.")));
+    }
+
+    public Match findByUserId (Long id) {
+        return matchRepository.findWithUserId(id)
+                .orElseThrow(() -> new NotFoundException("Não há usuário com este Id"));
+    }
 
 }

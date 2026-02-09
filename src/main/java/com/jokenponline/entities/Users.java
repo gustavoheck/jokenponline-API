@@ -14,6 +14,8 @@ public class Users {
 
     private boolean online;
 
+    private boolean searchingMatch;
+
     @Column(nullable = false, unique = true)
     private String username;
 
