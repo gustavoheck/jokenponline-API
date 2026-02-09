@@ -15,16 +15,16 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     @Query("""
        SELECT m
        FROM Match m
-       WHERE m.playerOneUsername = :username
-       OR m.playerTwoUsername = :username
+       WHERE m.playerOne.username = :username
+       OR m.playerTwo.username = :username
        """)
     Optional<Match> findWithUsername (String username);
 
     @Query("""
        SELECT m
        FROM Match m
-       WHERE m.playerOneId = :id
-       OR m.playerTwoId = :id
+       WHERE m.playerOne.id = :id
+       OR m.playerTwo.id = :id
        """)
     Optional<Match> findWithUserId(Long id);
 }
