@@ -1,9 +1,12 @@
 package com.jokenponline.service;
 
 import com.jokenponline.entities.Match;
+import com.jokenponline.entities.Users;
 import com.jokenponline.exceptions.NotFoundException;
 import com.jokenponline.repository.MatchRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class MatchesService {
@@ -16,8 +19,18 @@ public class MatchesService {
          this.usersService = usersService;
     }
 
-    public void matchmaking () {
-
+    public Match matchmaking (Users host) {
+        Users playerOne = host;
+        playerOne.setSearchingMatch(true);
+        Users playerTwo;
+        do {
+            playerOne = usersService.findRandomSearchingPlayer()
+                    .orElseThrow(() -> new NotFoundException("Nenhum usuário encontrado para criar partida"));
+            playerTwo = usersService.findRandomSearchingPlayer()
+                    .orElseThrow(() -> new NotFoundException("Nenhum usuário encontrado para criar partida"));
+        }
+        while (playerOne.equals(playerTwo));
+        return createMatch(new Match(playerOne, playerTwo));
     }
 
     public Match createMatch (Match match) {

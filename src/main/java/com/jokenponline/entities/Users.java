@@ -16,6 +16,8 @@ public class Users {
 
     private boolean searchingMatch;
 
+    private boolean inMatch;
+
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -43,6 +45,7 @@ public class Users {
         this.coins = 0;
         this.streak = 0;
         this.darkmode = false;
+        this.inMatch = false;
     }
 
     public long getId() {
