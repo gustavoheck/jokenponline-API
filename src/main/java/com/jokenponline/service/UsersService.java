@@ -22,12 +22,12 @@ public class UsersService {
 
     public Users findById (Long id) {
         return usersRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Id não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Id was not encountered"));
     }
 
     public Users findByOnline (Boolean online) {
         return usersRepository.findByOnline(online)
-                .orElseThrow(() -> new NotFoundException("Não a nenhum jogador" + ((online) ? "online." : "offline.")));
+                .orElseThrow(() -> new NotFoundException("There isn't any user" + ((online) ? "online!" : "offline!")));
     }
 
     public List<Users> findBySearchingMatch (Boolean isSearching) {

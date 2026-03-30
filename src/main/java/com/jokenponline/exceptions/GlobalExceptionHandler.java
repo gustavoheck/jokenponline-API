@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
                 .body(new IdNotFoundExceptionDTO (
                 LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(),
-                "Recurso não encontrado",
+                "Not encountered resource",
                 e.getMessage()
                 ));
     }

@@ -19,21 +19,21 @@ public class MatchService {
 
     public Match findById (Long id) {
         return matchRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Id não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Id not encountered!"));
     }
 
     public Match findByUsername (String username) {
         return matchRepository.findWithUsername(username)
-                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+                .orElseThrow(() -> new NotFoundException("User not encountered!"));
     }
 
     public Match findByOnline (boolean online) {
         return matchRepository.findByOnline(online)
-                .orElseThrow(() -> new NotFoundException("Não a nenhuma partida" + ((online) ? "online." : "offline.")));
+                .orElseThrow(() -> new NotFoundException("There isn't any match" + ((online) ? "online!" : "offline!")));
     }
 
     public Match findByUserId (Long id) {
         return matchRepository.findWithUserId(id)
-                .orElseThrow(() -> new NotFoundException("Não há usuário com este Id"));
+                .orElseThrow(() -> new NotFoundException("There isn't any user with this id!"));
     }
 }

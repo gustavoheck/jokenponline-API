@@ -21,9 +21,9 @@ public class MatchMakingService {
         Users playerTwo;
         do {
             playerOne = usersService.findRandomSearchingPlayer()
-                    .orElseThrow(() -> new NotFoundException("Nenhum usuário encontrado para criar partida"));
+                    .orElseThrow(() -> new NotFoundException("Nobody was encountered to create a match!"));
             playerTwo = usersService.findRandomSearchingPlayer()
-                    .orElseThrow(() -> new NotFoundException("Nenhum usuário encontrado para criar partida"));
+                    .orElseThrow(() -> new NotFoundException("Nobody was encountered to create a match!"));
         }
         while (playerOne.equals(playerTwo));
         return matchService.createMatch(new Match(playerOne, playerTwo));
