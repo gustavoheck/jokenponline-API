@@ -13,12 +13,12 @@ public class Match {
     private boolean online;
 
     @ManyToMany
-    private Users playerOne;
+    private User playerOne;
 
     private String playerOnePlay;
 
     @ManyToMany
-    private Users playerTwo;
+    private User playerTwo;
 
     private String playerTwoPlay;
 
@@ -26,7 +26,7 @@ public class Match {
 
     }
 
-    public Match (Users playerOne, Users playerTwo) {
+    public Match (User playerOne, User playerTwo) {
         this.online = true;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
@@ -48,19 +48,19 @@ public class Match {
         this.online = online;
     }
 
-    public Users getPlayerOne() {
+    public User getPlayerOne() {
         return playerOne;
     }
 
-    public void setPlayerOne(Users playerOne) {
+    public void setPlayerOne(User playerOne) {
         this.playerOne = playerOne;
     }
 
-    public Users getPlayerTwo() {
+    public User getPlayerTwo() {
         return playerTwo;
     }
 
-    public void setPlayerTwo(Users playerTwo) {
+    public void setPlayerTwo(User playerTwo) {
         this.playerTwo = playerTwo;
     }
 

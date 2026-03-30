@@ -14,7 +14,8 @@ public class MatchHistoricService {
     }
 
     public Match createMatch (Match match) {
-        return matchRepository.save(match);
+        matchRepository.save(match);
+        return match;
     }
 
     public Match findById (Long id) {

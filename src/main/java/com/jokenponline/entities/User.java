@@ -6,23 +6,23 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-
-    private boolean online;
-
-    private boolean searchingMatch;
-
-    private boolean inMatch;
 
     @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
     private String password;
+
+    private boolean online;
+
+    private boolean searchingMatch;
+
+    private boolean inMatch;
 
     private long streak;
 
@@ -33,11 +33,11 @@ public class Users {
 
     private boolean darkmode;
 
-    public Users () {
+    public User() {
 
     }
 
-    public Users (String username, String password) {
+    public User(String username, String password) {
         this.online = true;
         this.searchingMatch = false;
         this.username = username;

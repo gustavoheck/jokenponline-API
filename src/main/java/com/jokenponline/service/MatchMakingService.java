@@ -1,39 +1,31 @@
 package com.jokenponline.service;
 
 import com.jokenponline.entities.Match;
-import com.jokenponline.entities.Users;
+import com.jokenponline.entities.User;
 import com.jokenponline.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MatchMakingService {
     private final MatchHistoricService matchHistoricService;
-    private final UsersService usersService;
+    private final UserService userService;
 
-    public MatchMakingService(MatchHistoricService matchHistoricService, UsersService usersService) {
+    public MatchMakingService(MatchHistoricService matchHistoricService, UserService userService) {
         this.matchHistoricService = matchHistoricService;
-        this.usersService = usersService;
+        this.userService = userService;
     }
 
-    public Match findMatch (Users host) {
-        Users playerOne = host;
-        playerOne.setSearchingMatch(true);
-        Users playerTwo;
+    public Match findMatch (User host) {
+        User playerTwo;
         do {
-            playerOne = usersService.findRandomSearchingPlayer()
-                    .orElseThrow(() -> new NotFoundException("Nobody was encountered to create a match!"));
-            playerTwo = usersService.findRandomSearchingPlayer()
+            playerTwo = userService.findRandomSearchingPlayer()
                     .orElseThrow(() -> new NotFoundException("Nobody was encountered to create a match!"));
         }
-        while (playerOne.equals(playerTwo));
-        return matchHistoricService.createMatch(new Match(playerOne, playerTwo));
+        while (host.equals(playerTwo));
+        return matchHistoricService.createMatch(new Match(host, playerTwo));
     }
 
-    public long enterMatch (Match matchToEnter) {
-        return matchToEnter.getId();
-    }
-
-    public long matchmaking (Users host) {
-        return enterMatch(findMatch(host));
+    public long matchmaking (User host) {
+        return findMatch(host).getId();
     }
 }
