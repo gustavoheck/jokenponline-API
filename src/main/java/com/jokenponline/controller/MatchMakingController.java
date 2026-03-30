@@ -1,8 +1,11 @@
 package com.jokenponline.controller;
 
+import com.jokenponline.entities.Match;
+import com.jokenponline.repository.MatchRepository;
 import com.jokenponline.service.MatchHistoricService;
 import com.jokenponline.service.MatchMakingService;
 import com.jokenponline.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,8 +29,9 @@ public class MatchMakingController {
     }
 
     @PostMapping("/home")
-    public void createMatch (@AuthenticationPrincipal UserDetails userDetails) {
-        matchMakingService.matchmaking(userDetails.getUsername());
+    public ResponseEntity<Match> createMatch (@AuthenticationPrincipal UserDetails userDetails) {
+        Match newMatch = matchMakingService.matchmaking(userDetails.getUsername());
+        return ResponseEntity.status(HttpStatus.CREATED).body(newMatch);
     }
 
     @PatchMapping("/home")

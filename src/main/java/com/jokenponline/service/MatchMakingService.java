@@ -32,9 +32,9 @@ public class MatchMakingService {
         return matchHistoricService.createMatch(new Match(host, playerTwo));
     }
 
-    public long matchmaking (String hostUserName) {
+    public Match matchmaking (String hostUserName) {
         User host = userRepository.findByUsername(hostUserName)
                 .orElseThrow(() -> new NotFoundException("The user was not encountered by its username"));
-        return findMatch(host).getId();
+        return findMatch(host);
     }
 }
