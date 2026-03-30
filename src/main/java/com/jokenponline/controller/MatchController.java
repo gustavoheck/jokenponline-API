@@ -1,14 +1,14 @@
 package com.jokenponline.controller;
 
-import com.jokenponline.service.MatchService;
+import com.jokenponline.service.MatchHistoricService;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class MatchController {
 
-    private final MatchService matchesService;
+    private final MatchHistoricService matchesService;
 
-    public MatchController(MatchService matchesService) {
+    public MatchController(MatchHistoricService matchesService) {
         this.matchesService = matchesService;
     }
 

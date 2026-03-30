@@ -6,10 +6,10 @@ import com.jokenponline.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MatchService {
+public class MatchHistoricService {
     private final MatchRepository matchRepository;
 
-    public MatchService(MatchRepository matchRepository) {
+    public MatchHistoricService(MatchRepository matchRepository) {
          this.matchRepository = matchRepository;
     }
 

@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MatchMakingService {
-    private final MatchService matchService;
+    private final MatchHistoricService matchHistoricService;
     private final UsersService usersService;
 
-    public MatchMakingService(MatchService matchService, UsersService usersService) {
-        this.matchService = matchService;
+    public MatchMakingService(MatchHistoricService matchHistoricService, UsersService usersService) {
+        this.matchHistoricService = matchHistoricService;
         this.usersService = usersService;
     }
 
@@ -26,7 +26,7 @@ public class MatchMakingService {
                     .orElseThrow(() -> new NotFoundException("Nobody was encountered to create a match!"));
         }
         while (playerOne.equals(playerTwo));
-        return matchService.createMatch(new Match(playerOne, playerTwo));
+        return matchHistoricService.createMatch(new Match(playerOne, playerTwo));
     }
 
     public long enterMatch (Match matchToEnter) {
