@@ -1,9 +1,9 @@
-package com.jokenponline.exceptions.exceptionsDTO;
+package com.jokenponline.api.exceptions.exceptionsDTO;
 
 import java.time.LocalDateTime;
 
 
-public record IdNotFoundExceptionDTO(
+public record ExceptionDTO(
     LocalDateTime timestamp,
     int status,
     String error,

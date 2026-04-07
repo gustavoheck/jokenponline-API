@@ -1,8 +1,8 @@
-package com.jokenponline.service;
+package com.jokenponline.service.auth;
 
-import com.jokenponline.entities.User;
-import com.jokenponline.exceptions.NotFoundException;
-import com.jokenponline.repository.UserRepository;
+import com.jokenponline.domain.entities.User;
+import com.jokenponline.domain.exceptions.NotFoundException;
+import com.jokenponline.infra.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

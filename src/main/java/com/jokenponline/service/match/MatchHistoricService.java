@@ -1,8 +1,8 @@
-package com.jokenponline.service;
+package com.jokenponline.service.match;
 
-import com.jokenponline.entities.Match;
-import com.jokenponline.exceptions.NotFoundException;
-import com.jokenponline.repository.MatchRepository;
+import com.jokenponline.domain.entities.Match;
+import com.jokenponline.domain.exceptions.NotFoundException;
+import com.jokenponline.infra.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
 @Service

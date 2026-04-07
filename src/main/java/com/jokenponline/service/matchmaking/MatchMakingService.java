@@ -1,12 +1,12 @@
-package com.jokenponline.service;
+package com.jokenponline.service.matchmaking;
 
-import com.jokenponline.entities.Match;
-import com.jokenponline.entities.User;
-import com.jokenponline.exceptions.NotFoundException;
-import com.jokenponline.repository.UserRepository;
+import com.jokenponline.domain.entities.Match;
+import com.jokenponline.domain.entities.User;
+import com.jokenponline.domain.exceptions.NotFoundException;
+import com.jokenponline.infra.repository.UserRepository;
+import com.jokenponline.service.match.MatchHistoricService;
+import com.jokenponline.service.auth.UserService;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class MatchMakingService {

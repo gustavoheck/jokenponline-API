@@ -1,10 +1,9 @@
-package com.jokenponline.controller;
+package com.jokenponline.api.controller;
 
-import com.jokenponline.entities.Match;
-import com.jokenponline.repository.MatchRepository;
-import com.jokenponline.service.MatchHistoricService;
-import com.jokenponline.service.MatchMakingService;
-import com.jokenponline.service.UserService;
+import com.jokenponline.domain.entities.Match;
+import com.jokenponline.service.match.MatchHistoricService;
+import com.jokenponline.service.matchmaking.MatchMakingService;
+import com.jokenponline.service.auth.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

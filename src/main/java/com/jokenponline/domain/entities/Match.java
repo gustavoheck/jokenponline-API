@@ -1,4 +1,4 @@
-package com.jokenponline.entities;
+package com.jokenponline.domain.entities;
 
 import jakarta.persistence.*;
 

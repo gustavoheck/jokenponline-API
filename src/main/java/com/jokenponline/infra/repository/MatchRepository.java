@@ -1,6 +1,6 @@
-package com.jokenponline.repository;
+package com.jokenponline.infra.repository;
 
-import com.jokenponline.entities.Match;
+import com.jokenponline.domain.entities.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

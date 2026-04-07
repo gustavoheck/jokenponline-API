@@ -1,6 +1,6 @@
-package com.jokenponline.repository;
+package com.jokenponline.infra.repository;
 
-import com.jokenponline.entities.User;
+import com.jokenponline.domain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
