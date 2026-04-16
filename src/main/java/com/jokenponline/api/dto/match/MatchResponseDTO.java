@@ -1,6 +1,6 @@
-package com.jokenponline.api.dto.Match;
+package com.jokenponline.api.dto.match;
 
-public record newMatchResponseDTO(
+public record MatchResponseDTO(
         long id,
         String playerOneUser,
         String playerTwoUser
