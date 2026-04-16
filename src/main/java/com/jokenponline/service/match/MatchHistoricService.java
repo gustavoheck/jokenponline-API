@@ -1,5 +1,6 @@
 package com.jokenponline.service.match;
 
+import com.jokenponline.api.dto.match.MatchResponseDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.exceptions.NotFoundException;
 import com.jokenponline.infra.repository.MatchRepository;
@@ -13,9 +14,11 @@ public class MatchHistoricService {
          this.matchRepository = matchRepository;
     }
 
-    public Match createMatch (Match match) {
+    public MatchResponseDTO createMatch (Match match) {
         matchRepository.save(match);
-        return match;
+        return new MatchResponseDTO(match.getId(),
+                match.getPlayerOne().getUsername(),
+                match.getPlayerTwo().getUsername()); // fazer retornar um dto
     }
 
     public Match findById (Long id) {

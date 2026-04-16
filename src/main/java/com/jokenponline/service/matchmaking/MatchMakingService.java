@@ -1,11 +1,12 @@
 package com.jokenponline.service.matchmaking;
 
+import com.jokenponline.api.dto.match.MatchResponseDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.entities.User;
 import com.jokenponline.domain.exceptions.NotFoundException;
 import com.jokenponline.infra.repository.UserRepository;
 import com.jokenponline.service.match.MatchHistoricService;
-import com.jokenponline.service.auth.UserService;
+import com.jokenponline.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +23,7 @@ public class MatchMakingService {
         this.userRepository = userRepository;
     }
 
-    public Match findMatch (User host) {
+    public MatchResponseDTO findMatch (User host) {
         User playerTwo;
         do {
             playerTwo = userService.findRandomSearchingPlayer()
@@ -32,9 +33,9 @@ public class MatchMakingService {
         return matchHistoricService.createMatch(new Match(host, playerTwo));
     }
 
-    public Match matchmaking (String hostUserName) {
+    public MatchResponseDTO matchmaking (String hostUserName) {
         User host = userRepository.findByUsername(hostUserName)
                 .orElseThrow(() -> new NotFoundException("The user was not encountered by its username"));
-        return findMatch(host);
+        return findMatch(host); // fazer retornar o dto que ele deveria receber
     }
 }
