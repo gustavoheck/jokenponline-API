@@ -58,7 +58,7 @@ public class User {
         this.online = online;
     }
 
-    public String isSearchingMatch() {
+    public String getSearchingMatch() {
         return searchingMatch;
     }
 
