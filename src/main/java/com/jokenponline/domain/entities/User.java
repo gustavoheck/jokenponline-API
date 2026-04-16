@@ -21,7 +21,7 @@ public class User {
 
     private boolean online;
 
-    private String searchingMatch;
+    private String searchingStatus;
 
     private long streak;
 
@@ -38,7 +38,7 @@ public class User {
 
     public User(String username, String password) {
         this.online = true;
-        this.searchingMatch = SearchingStatus.OFFSEARCHING.getStatus();
+        this.searchingStatus = SearchingStatus.OFFSEARCHING.getStatus();
         this.username = username;
         this.password = password;
         this.coins = 0;
@@ -59,11 +59,11 @@ public class User {
     }
 
     public String getSearchingMatch() {
-        return searchingMatch;
+        return searchingStatus;
     }
 
-    public void setSearchingMatch(String searchingMatch) {
-        this.searchingMatch = searchingMatch;
+    public void setSearchingMatch(String searchingStatus) {
+        this.searchingStatus = searchingStatus;
     }
 
     public String getUsername() {
