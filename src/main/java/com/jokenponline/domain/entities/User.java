@@ -1,5 +1,6 @@
 package com.jokenponline.domain.entities;
 
+import com.jokenponline.domain.enums.SearchingStatus;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,9 +21,7 @@ public class User {
 
     private boolean online;
 
-    private boolean searchingMatch;
-
-    private boolean inMatch;
+    private String searchingMatch;
 
     private long streak;
 
@@ -39,13 +38,12 @@ public class User {
 
     public User(String username, String password) {
         this.online = true;
-        this.searchingMatch = false;
+        this.searchingMatch = SearchingStatus.OFFSEARCHING.getStatus();
         this.username = username;
         this.password = password;
         this.coins = 0;
         this.streak = 0;
         this.darkmode = false;
-        this.inMatch = false;
     }
 
     public long getId() {
@@ -60,11 +58,11 @@ public class User {
         this.online = online;
     }
 
-    public boolean isSearchingMatch() {
+    public String isSearchingMatch() {
         return searchingMatch;
     }
 
-    public void setSearchingMatch(boolean searchingMatch) {
+    public void setSearchingMatch(String searchingMatch) {
         this.searchingMatch = searchingMatch;
     }
 
