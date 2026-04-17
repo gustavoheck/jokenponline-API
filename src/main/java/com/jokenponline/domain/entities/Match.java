@@ -12,12 +12,12 @@ public class Match {
 
     private boolean online;
 
-    @ManyToMany
+    @OneToMany
     private User playerOne;
 
     private String playerOnePlay;
 
-    @ManyToMany
+    @OneToMany
     private User playerTwo;
 
     private String playerTwoPlay;
