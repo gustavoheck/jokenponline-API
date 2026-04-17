@@ -1,6 +1,6 @@
 package com.jokenponline.api.dto.onlineMatch;
 
-public record OnlineMatchResponse (
+public record OnlineMatchResponseDTO(
         int playerOnePlay,
 
         int playerTwoPlay
