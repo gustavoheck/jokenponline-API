@@ -3,5 +3,7 @@ package com.jokenponline.api.dto.onlineMatch;
 public record OnlineMatchResponseDTO(
         int playerOnePlay,
 
-        int playerTwoPlay
+        int playerTwoPlay,
+
+        String winnerUser
 ) {}
