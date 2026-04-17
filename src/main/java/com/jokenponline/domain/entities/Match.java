@@ -22,6 +22,9 @@ public class Match {
 
     private String playerTwoPlay;
 
+    @OneToMany
+    private User winner;
+
     protected Match () {
 
     }

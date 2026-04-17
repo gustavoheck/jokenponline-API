@@ -1,4 +1,4 @@
-package com.jokenponline.api.controller;
+package com.jokenponline.api.controller.match;
 
 import com.jokenponline.api.dto.match.MatchResponseDTO;
 import com.jokenponline.api.dto.user.SearchingRequestDTO;
