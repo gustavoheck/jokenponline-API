@@ -3,6 +3,8 @@ package com.jokenponline.service.match;
 import com.jokenponline.api.dto.onlineMatch.OnlineMatchRequestDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.enums.Plays;
+import com.jokenponline.domain.exceptions.LiveMatchException;
+import com.jokenponline.domain.exceptions.NotFoundException;
 import com.jokenponline.infra.repository.MatchRepository;
 
 public class MatchPlayService {
@@ -25,7 +27,7 @@ public class MatchPlayService {
             playingMatch.setPlayerTwoPlay(formatPlay(matchRequestDTO));
             matchRepository.save(playingMatch);
         } else {
-            throw new RuntimeException("This play is not on the match!"); //criar uma exceção para isso
+            throw new NotFoundException("This player is not on the match!"); //criar uma exceção para isso
         }
     }
 
@@ -42,7 +44,7 @@ public class MatchPlayService {
                 return Plays.SCISSORS.getName();
             }
             default: {
-                throw new RuntimeException("Invalid play! you can only choose Stone, Paper or Scissors"); //criar uma exceção para isso
+                throw new LiveMatchException("Invalid play! you can only choose Stone, Paper or Scissors");
             }
         }
     }

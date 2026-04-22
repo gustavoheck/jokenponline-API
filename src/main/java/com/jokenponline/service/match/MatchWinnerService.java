@@ -5,6 +5,8 @@ import com.jokenponline.api.dto.onlineMatch.OnlineMatchResponseDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.enums.MatchResult;
 import com.jokenponline.domain.enums.Plays;
+import com.jokenponline.domain.exceptions.AlreadySavedException;
+import com.jokenponline.domain.exceptions.NotFoundException;
 import com.jokenponline.infra.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +37,9 @@ public class MatchWinnerService {
             matchPlayService.savePlays(matchRequestDTO, username, matchId);
             return findResult(playingMatch, playerOnePlay, playerTwoPlay);
         } else {
-            throw new RuntimeException("Both players already played, the match is already over!");
+            throw new AlreadySavedException("Both players already played, the match is already over!");
         }
-        throw new RuntimeException("The plays were not found at database!");
+        throw new NotFoundException("The plays were not found at database!");
     }
 
     private OnlineMatchResponseDTO findResult(Match match, String playerOnePlay, String playerTwoPlay) {
