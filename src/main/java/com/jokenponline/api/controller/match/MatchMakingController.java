@@ -33,8 +33,7 @@ public class MatchMakingController {
     @PostMapping("/home")
     public ResponseEntity<MatchResponseDTO> createMatch (@AuthenticationPrincipal UserDetails userDetails) {
         MatchResponseDTO newMatch = matchMakingService.matchmaking(userDetails.getUsername());
-        return ResponseEntity.status(HttpStatus.CREATED).body(newMatch); // fazer enviar o dto para o front
-        // ele deve usar o ID para criar o link do website
+        return ResponseEntity.status(HttpStatus.CREATED).body(newMatch);
     }
 
     @PatchMapping("/home")
