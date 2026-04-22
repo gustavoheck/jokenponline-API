@@ -22,6 +22,8 @@ public class Match {
 
     private String playerTwoPlay;
 
+    private String matchResult;
+
     @OneToMany
     private User winner;
 
@@ -33,6 +35,18 @@ public class Match {
         this.online = true;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
+    }
+
+    public void setWinner(User winner) {
+        this.winner = winner;
+    }
+
+    public String getMatchResult() {
+        return matchResult;
+    }
+
+    public void setMatchResult(String matchResult) {
+        this.matchResult = matchResult;
     }
 
     public long getId() {
