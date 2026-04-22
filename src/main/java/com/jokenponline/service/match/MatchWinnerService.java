@@ -1,4 +1,4 @@
-package com.jokenponline.service.matchmaking;
+package com.jokenponline.service.match;
 
 import com.jokenponline.api.dto.onlineMatch.OnlineMatchRequestDTO;
 import com.jokenponline.api.dto.onlineMatch.OnlineMatchResponseDTO;
@@ -6,21 +6,22 @@ import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.enums.MatchResult;
 import com.jokenponline.domain.enums.Plays;
 import com.jokenponline.infra.repository.MatchRepository;
-import com.jokenponline.service.match.MatchHistoricService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.Optional;
 
 @Service
-public class OnlineMatchService {
+public class MatchWinnerService {
 
     private MatchHistoricService matchHistoricService;
     private MatchRepository matchRepository;
+    private MatchPlayService matchPlayService;
 
-    public OnlineMatchService(MatchHistoricService matchHistoricService, MatchRepository matchRepository) {
+    public MatchWinnerService(MatchHistoricService matchHistoricService, MatchRepository matchRepository,
+                              MatchPlayService matchPlayService) {
         this.matchHistoricService = matchHistoricService;
         this.matchRepository = matchRepository;
+        this.matchPlayService = matchPlayService;
     }
 
     public OnlineMatchResponseDTO matchWinner (OnlineMatchRequestDTO matchRequestDTO, String username, long matchId) {
@@ -29,9 +30,9 @@ public class OnlineMatchService {
         String playerTwoPlay = playingMatch.getPlayerTwoPlay();
 
         if (playerOnePlay == null && playerTwoPlay == null)  {
-            savePlays(matchRequestDTO, username, matchId);
+            matchPlayService.savePlays(matchRequestDTO, username, matchId);
         } else if ((playerOnePlay != null || playerTwoPlay == null) || (playerOnePlay == null || playerTwoPlay != null)) {
-            savePlays(matchRequestDTO, username, matchId);
+            matchPlayService.savePlays(matchRequestDTO, username, matchId);
             return findResult(playingMatch, playerOnePlay, playerTwoPlay);
         } else {
             throw new RuntimeException("Both players already played, the match is already over!");
@@ -61,37 +62,5 @@ public class OnlineMatchService {
         match.setWinner(match.getPlayerTwo());
         matchRepository.save(match);
         return new OnlineMatchResponseDTO(playerOnePlay, playerTwoPlay, match.getPlayerTwo().getUsername());
-    }
-
-    public void savePlays (OnlineMatchRequestDTO matchRequestDTO, String username, long matchId) {
-        Match playingMatch = matchHistoricService.findById(matchId);
-        if (playingMatch.getPlayerOne().getUsername().equals(username)) {
-            playingMatch.setPlayerOnePlay(formatPlay(matchRequestDTO));
-            matchRepository.save(playingMatch);
-        }
-        else if (playingMatch.getPlayerTwo().getUsername().equals(username)) {
-            playingMatch.setPlayerTwoPlay(formatPlay(matchRequestDTO));
-            matchRepository.save(playingMatch);
-        } else {
-            throw new RuntimeException("This play is not on the match!"); //criar uma exceção para isso
-        }
-    }
-
-    public String formatPlay (OnlineMatchRequestDTO matchRequestDTO) {
-        int play = matchRequestDTO.playerPlay();
-        switch (play) {
-            case 0 : {
-                return Plays.STONE.getName();
-            }
-            case 1 : {
-                return Plays.PAPER.getName();
-            }
-            case 2 : {
-                return Plays.SCISSORS.getName();
-            }
-            default: {
-                throw new RuntimeException("Invalid play! you can only choose Stone, Paper or Scissors"); //criar uma exceção para isso
-            }
-        }
     }
 }

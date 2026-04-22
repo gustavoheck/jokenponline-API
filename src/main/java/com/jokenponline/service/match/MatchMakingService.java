@@ -1,11 +1,10 @@
-package com.jokenponline.service.matchmaking;
+package com.jokenponline.service.match;
 
 import com.jokenponline.api.dto.match.MatchResponseDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.entities.User;
 import com.jokenponline.domain.exceptions.NotFoundException;
 import com.jokenponline.infra.repository.UserRepository;
-import com.jokenponline.service.match.MatchHistoricService;
 import com.jokenponline.service.user.UserService;
 import org.springframework.stereotype.Service;
 

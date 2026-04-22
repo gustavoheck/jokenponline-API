@@ -3,7 +3,7 @@ package com.jokenponline.api.controller.match;
 import com.jokenponline.api.dto.match.MatchResponseDTO;
 import com.jokenponline.api.dto.user.SearchingRequestDTO;
 import com.jokenponline.service.match.MatchHistoricService;
-import com.jokenponline.service.matchmaking.MatchMakingService;
+import com.jokenponline.service.match.MatchMakingService;
 import com.jokenponline.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

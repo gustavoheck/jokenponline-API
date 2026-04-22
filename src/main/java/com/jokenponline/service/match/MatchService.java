@@ -1,6 +1,5 @@
 package com.jokenponline.service.match;
 
-import com.jokenponline.service.matchmaking.MatchMakingService;
 import org.springframework.stereotype.Service;
 
 @Service
