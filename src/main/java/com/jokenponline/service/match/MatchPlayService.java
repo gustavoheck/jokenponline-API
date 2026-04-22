@@ -27,7 +27,7 @@ public class MatchPlayService {
             playingMatch.setPlayerTwoPlay(formatPlay(matchRequestDTO));
             matchRepository.save(playingMatch);
         } else {
-            throw new NotFoundException("This player is not on the match!"); //criar uma exceção para isso
+            throw new NotFoundException("This player is not on the match!");
         }
     }
 

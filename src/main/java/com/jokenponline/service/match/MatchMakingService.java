@@ -35,6 +35,6 @@ public class MatchMakingService {
     public MatchResponseDTO matchmaking (String hostUserName) {
         User host = userRepository.findByUsername(hostUserName)
                 .orElseThrow(() -> new NotFoundException("The user was not encountered by its username"));
-        return findMatch(host); // fazer retornar o dto que ele deveria receber
+        return findMatch(host);
     }
 }

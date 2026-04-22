@@ -18,7 +18,7 @@ public class MatchHistoricService {
         matchRepository.save(match);
         return new MatchResponseDTO(match.getId(),
                 match.getPlayerOne().getUsername(),
-                match.getPlayerTwo().getUsername()); // fazer retornar um dto
+                match.getPlayerTwo().getUsername());
     }
 
     public Match findById (Long id) {
