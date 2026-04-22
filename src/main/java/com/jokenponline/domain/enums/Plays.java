@@ -1,9 +1,9 @@
 package com.jokenponline.domain.enums;
 
 public enum Plays {
-    STONE("Pedra"),
-    PAPER("Papel"),
-    SCISSORS("Tesoura");
+    STONE("stone"),
+    PAPER("paper"),
+    SCISSORS("scissors");
 
     private String name;
 
