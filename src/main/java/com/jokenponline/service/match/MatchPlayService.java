@@ -1,6 +1,6 @@
 package com.jokenponline.service.match;
 
-import com.jokenponline.api.dto.onlineMatch.OnlineMatchRequestDTO;
+import com.jokenponline.api.dto.match.MatchPlaysRequestDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.enums.Plays;
 import com.jokenponline.domain.exceptions.InvalidChoiceException;
@@ -17,7 +17,7 @@ public class MatchPlayService {
         this.matchRepository = matchRepository;
     }
 
-    public void savePlays (OnlineMatchRequestDTO matchRequestDTO, String username, long matchId) {
+    public void savePlays (MatchPlaysRequestDTO matchRequestDTO, String username, long matchId) {
         Match playingMatch = matchHistoricService.findById(matchId);
         if (playingMatch.getPlayerOne().getUsername().equals(username)) {
             playingMatch.setPlayerOnePlay(formatPlay(matchRequestDTO));
@@ -31,7 +31,7 @@ public class MatchPlayService {
         }
     }
 
-    public String formatPlay (OnlineMatchRequestDTO matchRequestDTO) {
+    public String formatPlay (MatchPlaysRequestDTO matchRequestDTO) {
         int play = matchRequestDTO.playerPlay();
         switch (play) {
             case 0 : {

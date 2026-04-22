@@ -1,7 +1,7 @@
 package com.jokenponline.api.controller.match;
 
-import com.jokenponline.api.dto.onlineMatch.OnlineMatchRequestDTO;
-import com.jokenponline.api.dto.onlineMatch.OnlineMatchResponseDTO;
+import com.jokenponline.api.dto.match.MatchPlaysRequestDTO;
+import com.jokenponline.api.dto.match.MatchPlaysResponseDTO;
 import com.jokenponline.service.match.MatchWinnerService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,9 +21,9 @@ public class OnlineMatchController {
     }
 
     @PostMapping("/{matchID}")
-    public Optional<OnlineMatchResponseDTO> matchWinner (@PathVariable("matchId") long matchId,
-                                                         @Valid @RequestBody OnlineMatchRequestDTO onlineMatchRequestDTO,
-                                                         @AuthenticationPrincipal UserDetails userDetails) {
+    public Optional<MatchPlaysResponseDTO> matchWinner (@PathVariable("matchId") long matchId,
+                                                        @Valid @RequestBody MatchPlaysRequestDTO onlineMatchRequestDTO,
+                                                        @AuthenticationPrincipal UserDetails userDetails) {
         onlineMatchService.matchWinner(onlineMatchRequestDTO, userDetails.getUsername(), matchId);
     }
 }

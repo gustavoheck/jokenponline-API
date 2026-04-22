@@ -1,7 +1,7 @@
 package com.jokenponline.service.match;
 
-import com.jokenponline.api.dto.onlineMatch.OnlineMatchRequestDTO;
-import com.jokenponline.api.dto.onlineMatch.OnlineMatchResponseDTO;
+import com.jokenponline.api.dto.match.MatchPlaysRequestDTO;
+import com.jokenponline.api.dto.match.MatchPlaysResponseDTO;
 import com.jokenponline.domain.entities.Match;
 import com.jokenponline.domain.enums.MatchResult;
 import com.jokenponline.domain.enums.Plays;
@@ -26,7 +26,7 @@ public class MatchWinnerService {
         this.matchPlayService = matchPlayService;
     }
 
-    public OnlineMatchResponseDTO matchWinner (OnlineMatchRequestDTO matchRequestDTO, String username, long matchId) {
+    public MatchPlaysResponseDTO matchWinner (MatchPlaysRequestDTO matchRequestDTO, String username, long matchId) {
         Match playingMatch = matchHistoricService.findById(matchId);
         String playerOnePlay = playingMatch.getPlayerOnePlay();
         String playerTwoPlay = playingMatch.getPlayerTwoPlay();
@@ -42,7 +42,7 @@ public class MatchWinnerService {
         throw new NotFoundException("The plays were not found at database!");
     }
 
-    private OnlineMatchResponseDTO findResult(Match match, String playerOnePlay, String playerTwoPlay) {
+    private MatchPlaysResponseDTO findResult(Match match, String playerOnePlay, String playerTwoPlay) {
         Map<String, String> rules = Map.of(
                 Plays.PAPER.getName(), Plays.STONE.getName(),
                 Plays.STONE.getName(), Plays.SCISSORS.getName(),
@@ -52,17 +52,17 @@ public class MatchWinnerService {
         if (playerOnePlay.equals(playerTwoPlay)) {
             match.setMatchResult(MatchResult.TIE.getName());
             matchRepository.save(match);
-            return new OnlineMatchResponseDTO(playerOnePlay, playerTwoPlay, null);
+            return new MatchPlaysResponseDTO(playerOnePlay, playerTwoPlay, null);
         }
         else if (rules.get(playerOnePlay).equals(rules.get(playerTwoPlay))) {
             match.setMatchResult(MatchResult.FINISHED.getName());
             match.setWinner(match.getPlayerOne());
             matchRepository.save(match);
-            return new OnlineMatchResponseDTO(playerOnePlay, playerTwoPlay, match.getPlayerOne().getUsername());
+            return new MatchPlaysResponseDTO(playerOnePlay, playerTwoPlay, match.getPlayerOne().getUsername());
         }
         match.setMatchResult(MatchResult.FINISHED.getName());
         match.setWinner(match.getPlayerTwo());
         matchRepository.save(match);
-        return new OnlineMatchResponseDTO(playerOnePlay, playerTwoPlay, match.getPlayerTwo().getUsername());
+        return new MatchPlaysResponseDTO(playerOnePlay, playerTwoPlay, match.getPlayerTwo().getUsername());
     }
 }
