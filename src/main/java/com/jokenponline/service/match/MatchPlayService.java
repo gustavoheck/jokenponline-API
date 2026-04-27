@@ -1,0 +1,51 @@
+package com.jokenponline.service.match;
+
+import com.jokenponline.api.dto.match.MatchPlaysRequestDTO;
+import com.jokenponline.domain.entities.Match;
+import com.jokenponline.domain.enums.Plays;
+import com.jokenponline.domain.exceptions.InvalidChoiceException;
+import com.jokenponline.domain.exceptions.NotFoundException;
+import com.jokenponline.infra.repository.MatchRepository;
+
+public class MatchPlayService {
+
+    private MatchHistoricService matchHistoricService;
+    private MatchRepository matchRepository;
+
+    public MatchPlayService(MatchHistoricService matchHistoricService, MatchRepository matchRepository) {
+        this.matchHistoricService = matchHistoricService;
+        this.matchRepository = matchRepository;
+    }
+
+    public void savePlays (MatchPlaysRequestDTO matchRequestDTO, String username, long matchId) {
+        Match playingMatch = matchHistoricService.findById(matchId);
+        if (playingMatch.getPlayerOne().getUsername().equals(username)) {
+            playingMatch.setPlayerOnePlay(formatPlay(matchRequestDTO));
+            matchRepository.save(playingMatch);
+        }
+        else if (playingMatch.getPlayerTwo().getUsername().equals(username)) {
+            playingMatch.setPlayerTwoPlay(formatPlay(matchRequestDTO));
+            matchRepository.save(playingMatch);
+        } else {
+            throw new NotFoundException("This player is not on the match!");
+        }
+    }
+
+    public String formatPlay (MatchPlaysRequestDTO matchRequestDTO) {
+        int play = matchRequestDTO.playerPlay();
+        switch (play) {
+            case 0 : {
+                return Plays.STONE.getName();
+            }
+            case 1 : {
+                return Plays.PAPER.getName();
+            }
+            case 2 : {
+                return Plays.SCISSORS.getName();
+            }
+            default: {
+                throw new InvalidChoiceException("Invalid play! you can only choose Stone, Paper or Scissors");
+            }
+        }
+    }
+}
